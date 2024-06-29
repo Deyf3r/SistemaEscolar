@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SistemaEscolar.Data.Entities;
 using SistemaEscolar.Data.Interfaces;
 
 namespace SistemaEscolar.Web.Controllers
@@ -38,10 +39,11 @@ namespace SistemaEscolar.Web.Controllers
         // POST: ProfesoresController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Profesores profesores)
         {
             try
             {
+                this.profesoresRepository.Agregar(profesores);
                 return RedirectToAction(nameof(Index));
             }
             catch
