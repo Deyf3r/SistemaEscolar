@@ -98,19 +98,8 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
         private void CargarDatos()
         {
-            Profesores profesores = new Profesores()
-            {
-                ProfesorId = 1,
-                Nombre = "Leandro",
-                Apellido = "Zapata",
-                Correo = "leandro@gmail.com",
-                Departamento = "Fisica",
-                Telefono = 809845854,
-                Direccion = "Santo Domingo",
-            };
-
-
-            List<Profesores> profesores1 = new List<Profesores>()
+           
+            List<Profesores> profesores = new List<Profesores>()
             {
                 new Profesores()
                 {
@@ -151,6 +140,60 @@ namespace SistemaEscolar.Data.Repositories.Mocks
                     Departamento = "Educacion Fisica",
                     Telefono = 121351531,
                     Direccion = "Santo Domingo",
+                },
+                    new Profesores()
+                {
+                    ProfesorId = 5,
+                    Nombre = "Maria",
+                    Apellido = "Gonzalez",
+                    Correo = "maria.gonzalez@gmail.com",
+                    Departamento = "Matemáticas",
+                    Telefono = 123456789,
+                    Direccion = "Santiago",
+                },
+
+                new Profesores()
+                {
+                    ProfesorId = 6,
+                    Nombre = "Juan",
+                    Apellido = "Perez",
+                    Correo = "juan.perez@gmail.com",
+                    Departamento = "Historia",
+                    Telefono = 987654321,
+                    Direccion = "La Vega",
+                },
+
+                new Profesores()
+                {
+                    ProfesorId = 7,
+                    Nombre = "Ana",
+                    Apellido = "Lopez",
+                    Correo = "ana.lopez@gmail.com",
+                    Departamento = "Lengua y Literatura",
+                    Telefono = 456789123,
+                    Direccion = "Puerto Plata",
+                },
+
+                new Profesores()
+                {
+                    ProfesorId = 8,
+                    Nombre = "Carlos",
+                    Apellido = "Martinez",
+                    Correo = "carlos.martinez@gmail.com",
+                    Departamento = "Ciencias",
+                    Telefono = 654321987,
+                    Direccion = "Bavaro",
+                },
+
+                new Profesores()
+                {
+                    ProfesorId = 9,
+                    Nombre = "Lucia",
+                    Apellido = "Ramirez",
+                    Correo = "lucia.ramirez@gmail.com",
+                    Departamento = "Educación Artística",
+                    Telefono = 321987654,
+                    Direccion = "Punta Cana",
                 },
             };
             this.context.Profesores.AddRange(profesores);
