@@ -1,6 +1,6 @@
 # Proyecto de Electiva 1: DevOps (ITLA)
 
-## Integrantes:
+### Integrantes:
 Franklyn Muñoz Salcedo, 2021 – 2296.
 
 Iliana La Paz Alberto, 2022 - 0056.
