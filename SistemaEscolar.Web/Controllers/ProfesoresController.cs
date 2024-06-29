@@ -55,16 +55,18 @@ namespace SistemaEscolar.Web.Controllers
         // GET: ProfesoresController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var profesores = this.profesoresRepository.ObtenerPorId(id);
+            return View(profesores);
         }
 
         // POST: ProfesoresController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Profesores profesores)
         {
             try
             {
+                this.profesoresRepository.Actualizar(profesores);
                 return RedirectToAction(nameof(Index));
             }
             catch
