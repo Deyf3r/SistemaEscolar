@@ -98,9 +98,12 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
         private void CargarDatos()
         {
-           
-            List<Profesores> profesores = new List<Profesores>()
+            if (!this.context.Profesores.Any())
             {
+                List<Profesores> profesores = new List<Profesores>()
+            {
+
+
                 new Profesores()
                 {
                     ProfesorId = 1,
@@ -196,9 +199,9 @@ namespace SistemaEscolar.Data.Repositories.Mocks
                     Direccion = "Punta Cana",
                 },
             };
-            this.context.Profesores.AddRange(profesores);
-            this.context.SaveChanges();
-
+                this.context.Profesores.AddRange(profesores);
+                this.context.SaveChanges();
+            }
         }
 
         private bool EsProfesorNull(Profesores profesores)

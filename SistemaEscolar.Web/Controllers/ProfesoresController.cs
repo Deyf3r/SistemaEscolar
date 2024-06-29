@@ -24,7 +24,9 @@ namespace SistemaEscolar.Web.Controllers
         // GET: ProfesoresController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var profesores = this.profesoresRepository.ObtenerPorId(id);
+
+            return View(profesores);
         }
 
         // GET: ProfesoresController/Create
