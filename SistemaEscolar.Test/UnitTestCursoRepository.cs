@@ -1,6 +1,6 @@
 namespace SistemaEscolar.Test
 {
-    public class UnitTest1
+    public class UnitTestCursoRepository
     {
         [Fact]
         public void Test1()

@@ -15,12 +15,22 @@ namespace Sistema_Escolar.Data.Context
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase("DBEscolar");
-            base.OnConfiguring(optionsBuilder);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseInMemoryDatabase("DBEscolar");
+        //    base.OnConfiguring(optionsBuilder);
+        //}
         public DbSet<Cursos> Curso { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Cursos>()
+                .HasKey(c => c.CursoId);
 
+            modelBuilder.Entity<Cursos>()
+               .Property(c => c.CursoId)
+               .ValueGeneratedOnAdd();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
