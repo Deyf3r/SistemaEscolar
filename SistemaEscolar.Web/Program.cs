@@ -1,6 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using SistemaEscolar.Data.Context;
+using SistemaEscolar.Data.Interfaces;
+using SistemaEscolar.Data.Repositories.Mocks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<ProfesoresContext>(options => options.UseInMemoryDatabase("SistemaEscolar"));
+
+builder.Services.AddScoped<IProfesoresRepository, MockProfesoresRepository>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

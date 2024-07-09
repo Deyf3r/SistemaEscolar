@@ -16,6 +16,10 @@ namespace SistemaEscolar.Data.Context
 
         }
 
+        public ProfesoresContext()
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseInMemoryDatabase("SistemaEscolar");

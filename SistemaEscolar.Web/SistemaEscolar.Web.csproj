@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaEscolar.Data\SistemaEscolar.Data.csproj" />
+  </ItemGroup>
+
 </Project>
