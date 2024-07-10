@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_Escolar.Data.Repositories.Moks
+namespace SistemaEscolar.Data.Repositories.Mocks
 {
     public class MockCursoRepository : ICursoRepository
     {
@@ -17,14 +17,14 @@ namespace Sistema_Escolar.Data.Repositories.Moks
         public MockCursoRepository(SistemaEscolarContext context)
         {
             this.context = context;
-            this.CargarDatos();
+            CargarDatos();
         }
         public void Actualizar(Cursos curso)
         {
             if (EsCursoNull(curso))
                 throw new CursoNullException("El Objeto asiento no debe de ser null");
 
-            Cursos cursoToUpdate = this.context.Curso.Find(curso);
+            Cursos cursoToUpdate = context.Curso.Find(curso);
 
             if (cursoToUpdate is null)
                 throw new CursoNotExistsException("El Objeto asiento no debe de ser null");
@@ -35,8 +35,8 @@ namespace Sistema_Escolar.Data.Repositories.Moks
             cursoToUpdate.Descripcion = curso.Descripcion;
             cursoToUpdate.ProfesorAsig = curso.ProfesorAsig;
 
-            this.context.Curso.Update(cursoToUpdate);
-            this.context.SaveChanges();
+            context.Curso.Update(cursoToUpdate);
+            context.SaveChanges();
         }
 
         public void Agregar(Cursos curso)
@@ -60,13 +60,13 @@ namespace Sistema_Escolar.Data.Repositories.Moks
 
             };
 
-            this.context.Curso.Add(CursoToAdd);
-            this.context.SaveChanges();
+            context.Curso.Add(CursoToAdd);
+            context.SaveChanges();
         }
 
         public Cursos ObtenerPorId(int CursoId)
         {
-            return this.context.Curso.Find(CursoId);
+            return context.Curso.Find(CursoId);
         }
 
         public void Remover(Cursos curso)
@@ -76,20 +76,20 @@ namespace Sistema_Escolar.Data.Repositories.Moks
 
 
 
-            Cursos cursoToRemove = this.context.Curso.Find(curso.CursoId);
+            Cursos cursoToRemove = context.Curso.Find(curso.CursoId);
 
             if (cursoToRemove is null)
                 throw new CursoNotExistsException("El curso no se encuenta registrado");
 
 
 
-            this.context.Curso.Remove(cursoToRemove);
-            this.context.SaveChanges();
+            context.Curso.Remove(cursoToRemove);
+            context.SaveChanges();
         }
 
         public List<Cursos> TraerTodos()
         {
-            return this.context.Curso.ToList();
+            return context.Curso.ToList();
         }
 
         private void CargarDatos()
@@ -144,8 +144,8 @@ namespace Sistema_Escolar.Data.Repositories.Moks
 
             };
 
-            this.context.Curso.AddRange(cursos);
-            this.context.SaveChanges();
+            context.Curso.AddRange(cursos);
+            context.SaveChanges();
 
 
         }
@@ -163,7 +163,7 @@ namespace Sistema_Escolar.Data.Repositories.Moks
 
         private bool ExisteCurso(int cursoId, int ProfesorAsig)
         {
-            return this.context.Curso.Any(cd => cd.CursoId == cursoId && cd.ProfesorAsig == ProfesorAsig);
+            return context.Curso.Any(cd => cd.CursoId == cursoId && cd.ProfesorAsig == ProfesorAsig);
 
         }
     }
