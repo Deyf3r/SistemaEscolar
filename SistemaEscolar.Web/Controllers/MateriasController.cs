@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SistemaEscolar.Data.Entities;
 using SistemaEscolar.Data.Interfaces;
 
 namespace SistemaEscolar.Web.Controllers
@@ -26,7 +27,8 @@ namespace SistemaEscolar.Web.Controllers
         // GET: MateriasController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var materias = this.materiasRepository.ObtenerPorId(id);
+            return View(materias);
         }
 
         // GET: MateriasController/Create
@@ -38,10 +40,11 @@ namespace SistemaEscolar.Web.Controllers
         // POST: MateriasController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Materias materias)
         {
             try
             {
+                this.materiasRepository.Agregar(materias);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -53,37 +56,18 @@ namespace SistemaEscolar.Web.Controllers
         // GET: MateriasController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var materias = this.materiasRepository.ObtenerPorId(id);
+            return View(materias);
         }
 
         // POST: MateriasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Materias materias)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MateriasController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MateriasController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
+                this.materiasRepository.Actualizar(materias);
                 return RedirectToAction(nameof(Index));
             }
             catch

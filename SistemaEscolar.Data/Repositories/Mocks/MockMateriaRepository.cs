@@ -93,8 +93,9 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
         private void CargarDatos()
         {
-
-            List<Materias> materias1 = new List<Materias>()
+            if (!this.context.Materias.Any())
+            {
+                List<Materias> materias1 = new List<Materias>()
             {
                 new Materias ()
                 {
@@ -123,8 +124,12 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
              };
 
-            this.context.Materias.AddRange(materias1);
-            this.context.SaveChanges();
+
+                this.context.Materias.AddRange(materias1);
+                this.context.SaveChanges();
+
+            }
+
 
 
         }
@@ -143,6 +148,12 @@ namespace SistemaEscolar.Data.Repositories.Mocks
         private bool ExisteMateria(int materiasId)
         {
             return this.context.Materias.Any(cd => cd.MateriasId == materiasId);
+        }
+
+        private void LimpiarDatos(List<Materias> materias) 
+        {
+            this.context.Materias.RemoveRange(materias);
+            this.context.SaveChanges();
         }
     }
 }
