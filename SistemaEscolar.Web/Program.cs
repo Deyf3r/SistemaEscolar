@@ -1,6 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Sistema_Escolar.Data.Context;
+using Sistema_Escolar.Data.Interfaces;
+using Sistema_Escolar.Data.Repositories.Mocks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<AgregarEstudiantesContext>(options => options.UseInMemoryDatabase("Estudiantes"));
+
+builder.Services.AddScoped<IAgregarEstudiantesRepository, MockAgregarEstudiantes >(); 
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

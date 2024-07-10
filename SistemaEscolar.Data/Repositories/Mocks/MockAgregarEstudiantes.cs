@@ -75,31 +75,52 @@ namespace Sistema_Escolar.Data.Repositories.Mocks
 
         private void CargarDatos()
         {
-            Estudiantes estudiante = new Estudiantes()
-            {
-                EstudiantesId = 1,
-            };
 
-            new Estudiantes()
-            {
-                EstudiantesId = 2,
-            };
+            List<Estudiantes> estudiantes1 = new List<Estudiantes>()
+    {
+        new Estudiantes ()
+        {
+        EstudiantesId = 1,
+        Nombre = "Felibell",
+        Apellido = "Brazoban Lopez"
+        },
+        new Estudiantes ()
+        {
+        EstudiantesId = 2,
+        Nombre = "Franklyn",
+        Apellido = "Salcedo"
+        },
+        new Estudiantes ()
+        {
+        EstudiantesId = 3,
+        Nombre = "Darlly",
+        Apellido = "Gomez"
+        },
+       new Estudiantes ()
+        {
+        EstudiantesId = 4,
+        Nombre = "Aralis",
+        Apellido = "Brazoban Lopez"
+        },
 
-            List<Estudiantes> estudiantes = new List<Estudiantes>() { };
+     };
 
-            this.context.Estudiantes.AddRange(estudiantes);
+            this.context.Estudiantes.AddRange(estudiantes1);
+            this.context.SaveChanges();
 
 
         }
 
         private bool EsEstudianteNUll(Estudiantes estudiante)
-        {
-            bool result = false;
+            {
+                bool result = false;
 
-            if (estudiante == null)
-                result = true;
-            return result;
+                if (estudiante == null)
+                    result = true;
+                return result;
+            }
+
         }
-
     }
-}
+
+
