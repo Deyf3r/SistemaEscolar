@@ -7,9 +7,9 @@ namespace SistemaEscolar.Web.Controllers
 {
     public class CursoController : Controller
     {
-        private readonly ICursoRepository cursoRepository;
+        private readonly CursoRepository cursoRepository;
 
-        public CursoController(ICursoRepository cursoRepository)
+        public CursoController(CursoRepository cursoRepository)
         {
             this.cursoRepository = cursoRepository;
         }

@@ -8,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<SistemaEscolarContext>(options => options.UseInMemoryDatabase("DBEscolar"));
+builder.Services.AddDbContext<SistemaEscolarContext>(options => options.UseInMemoryDatabase("SistemaEscolar"));
 
-builder.Services.AddScoped<ICursoRepository, MockCursoRepository>();
+builder.Services.AddScoped<CursoRepository, MockCursoRepository>();
 
 var app = builder.Build();
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SistemaEscolar.Data.Repositories.Mocks
 {
-    public class MockCursoRepository : ICursoRepository
+    public class MockCursoRepository : CursoRepository
     {
         private readonly SistemaEscolarContext context;
 
