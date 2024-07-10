@@ -7,6 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddDbContext<AgregarMateriasContext>(options => options.UseInMemoryDatabase("SistemaEscolar"));
+
+builder.Services.AddScoped<IMateriasRepository, MockMateriaRepository>();
+
 builder.Services.AddDbContext<ProfesoresContext>(options => options.UseInMemoryDatabase("SistemaEscolar"));
 
 builder.Services.AddScoped<IProfesoresRepository, MockProfesoresRepository>();

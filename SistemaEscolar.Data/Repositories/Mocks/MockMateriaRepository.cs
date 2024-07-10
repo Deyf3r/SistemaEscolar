@@ -99,25 +99,25 @@ namespace SistemaEscolar.Data.Repositories.Mocks
                 new Materias ()
                 {
                 MateriasId = 1,
-                MateriasName = "",
+                MateriasName = "Naturalez",
                 Descripcion = ""
                 },
                 new Materias ()
                 {
                 MateriasId = 2,
-                MateriasName = "",
+                MateriasName = "Matematicas",
                 Descripcion = ""
                 },
                 new Materias ()
                 {
                 MateriasId = 3,
-                MateriasName = "",
+                MateriasName = "Fisica",
                 Descripcion = ""
                 },
                 new Materias ()
                 {
                 MateriasId = 4,
-                MateriasName = "",
+                MateriasName = "Programacion",
                 Descripcion = ""
                 },
 
