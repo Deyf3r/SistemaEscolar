@@ -16,7 +16,17 @@ namespace SistemaEscolar.Data.Context
 
         }
 
-       
+        public AgregarMateriasContext()
+        {
+            
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("SistemaEscolar");
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
         public DbSet<Materias> Materias { get; set; }
     }
 }

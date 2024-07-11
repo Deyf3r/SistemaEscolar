@@ -33,7 +33,7 @@ namespace SistemaEscolar.Data.Repositories.Mocks
             Materias materiasToupdate = this.context.Materias.Find(materias.MateriasId);
 
             if (materiasToupdate is null)
-                throw new MateriasNullExceptions("It dosen't have to be null");
+                throw new MateriaNotExitsExeption("It dosen't have to be null");
 
             materiasToupdate.MateriasId = materias.MateriasId;
             materiasToupdate.MateriasName = materias.MateriasName;
@@ -51,6 +51,8 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
             if (ExisteMateria(materias.MateriasId))
                 throw new MateriaDuplicadoExeption($"this materia {materias.MateriasId}");
+
+        
 
             Materias materiastoadd = new Materias()
             {
