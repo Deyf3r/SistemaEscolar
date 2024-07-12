@@ -1,4 +1,4 @@
-namespace SistemaEscolar.Test
+namespace TestProject1
 {
     public class UnitTest1
     {

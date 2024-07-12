@@ -11,17 +11,24 @@ using System.Threading.Tasks;
 
 namespace Sistema_Escolar.Data.Repositories.Mocks
 {
-    public class MockAgregarEstudiantes : IAgregarEstudiantesRepository
+    public class MockAgregarEstudiantesRepository : IAgregarEstudiantesRepository
 
     {
         private readonly AgregarEstudiantesContext context;
 
-        public MockAgregarEstudiantes(AgregarEstudiantesContext context)
+        public MockAgregarEstudiantesRepository(AgregarEstudiantesContext context)
         {
             this.context = context;
             this.CargarDatos();
 
         }
+
+        public int EstudiantesId { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido {  get; set; }
+
+
+
         public void Actualizar(Estudiantes estudiantes)
         {
             if (EsEstudianteNUll(estudiantes))
@@ -33,14 +40,33 @@ namespace Sistema_Escolar.Data.Repositories.Mocks
             if (estudianteToUpdate is null)
                 throw new AgregarEstudiantesNotExists("El Estudiante no se encuentra registrado");
 
-            estudianteToUpdate.EstudiantesId = estudianteToUpdate.EstudiantesId;
+            estudianteToUpdate.EstudiantesId = estudiantes.EstudiantesId;
+            estudianteToUpdate.Nombre = estudiantes.Nombre;
+            estudianteToUpdate.Apellido = estudiantes.Apellido;
+
+            this.context.Estudiantes.Update(estudianteToUpdate);
+            this.context.SaveChanges();
         }
 
         public void Agregar(Estudiantes estudiantes)
         {
-            if (EsEstudianteNUll(estudiantes))
+           if(EsEstudianteNUll(estudiantes))
+                throw new AgregarEstudiantesNullException("El estudiante no debe ser nulo");
 
-                throw new AgregarEstudiantesNullException("El Estudiante no puede ser nulo");
+            if (ExisteEstudiante(estudiantes.EstudiantesId))
+                throw new EstudiantesDuplicadoExeption($"Este estudiante {estudiantes.EstudiantesId}");
+
+
+
+            Estudiantes estudiantestoadd = new Estudiantes()
+            {
+                EstudiantesId = estudiantes.EstudiantesId,
+                Nombre = estudiantes.Nombre,
+                Apellido = estudiantes.Apellido,
+            };
+
+            this.context.Estudiantes.Add(estudiantestoadd);
+            this.context.SaveChanges();
 
 
         }
@@ -76,8 +102,10 @@ namespace Sistema_Escolar.Data.Repositories.Mocks
         private void CargarDatos()
         {
 
-            List<Estudiantes> estudiantes1 = new List<Estudiantes>()
-    {
+            if (!this.context.Estudiantes.Any())
+            {
+                List<Estudiantes> estudiantes1 = new List<Estudiantes>()
+        {
         new Estudiantes ()
         {
         EstudiantesId = 1,
@@ -103,24 +131,45 @@ namespace Sistema_Escolar.Data.Repositories.Mocks
         Apellido = "Brazoban Lopez"
         },
 
-     };
+         };
 
-            this.context.Estudiantes.AddRange(estudiantes1);
-            this.context.SaveChanges();
+                this.context.Estudiantes.AddRange(estudiantes1);
+                this.context.SaveChanges();
+            }
+
+
+    
+
+            
+
+        
 
 
         }
 
         private bool EsEstudianteNUll(Estudiantes estudiante)
-            {
-                bool result = false;
+        {
+            bool result = false;
 
-                if (estudiante == null)
-                    result = true;
-                return result;
-            }
+            if (estudiante == null)
+                result = true;
+            return result;
+        }
+
+        private bool ExisteEstudiante(int estudianteId)
+        {
+            return this.context.Estudiantes.Any(cd => cd.EstudiantesId == estudianteId);
+        }
+
+        private void LimpiarDatos(List<Estudiantes> estudiantes)
+        {
+            this.context.Estudiantes.RemoveRange(estudiantes);
+            this.context.SaveChanges();
 
         }
+
+      
     }
+}
 
 

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEscolar.Web", "SistemaEscolar.Web\SistemaEscolar.Web.csproj", "{D6B04D04-2501-4E14-A2EA-F659AF5301AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaEscolar.Web", "SistemaEscolar.Web\SistemaEscolar.Web.csproj", "{D6B04D04-2501-4E14-A2EA-F659AF5301AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEscolar.Data", "SistemaEscolar.Data\SistemaEscolar.Data.csproj", "{30CB86E5-E493-455D-94EA-4CCAA37A80A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaEscolar.Data", "SistemaEscolar.Data\SistemaEscolar.Data.csproj", "{30CB86E5-E493-455D-94EA-4CCAA37A80A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEscolar.Test", "SistemaEscolar.Test\SistemaEscolar.Test.csproj", "{6B99DCD3-94EA-446D-B48D-11558DA95263}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaEscolar.Test", "SistemaEscolar.Test\SistemaEscolar.Test.csproj", "{6B99DCD3-94EA-446D-B48D-11558DA95263}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
