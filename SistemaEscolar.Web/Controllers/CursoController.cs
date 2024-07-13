@@ -2,14 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Sistema_Escolar.Data.Entities;
 using Sistema_Escolar.Data.Interfaces;
+using SistemaEscolar.Data.Repositories.Db;
 
 namespace SistemaEscolar.Web.Controllers
 {
     public class CursoController : Controller
     {
-        private readonly CursoRepository cursoRepository;
+        private readonly ICursoRepository cursoRepository;
 
-        public CursoController(CursoRepository cursoRepository)
+        public CursoController(ICursoRepository cursoRepository)
         {
             this.cursoRepository = cursoRepository;
         }

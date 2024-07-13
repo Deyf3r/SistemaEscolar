@@ -1,14 +1,38 @@
-﻿using Sistema_Escolar.Data.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Sistema_Escolar.Data.Entities;
+using Sistema_Escolar.Data.Interfaces;
 
-namespace Sistema_Escolar.Data.Interfaces
+namespace SistemaEscolar.Data.Repositories.Db
 {
-    public interface CursoRepository
+    public class CursoRepository : ICursoRepository
     {
-        void Agregar(Cursos curso);
-        void Actualizar(Cursos curso);
-        void Remover(Cursos curso);
-        List<Cursos> TraerTodos();
+        public void Actualizar(Cursos curso)
+        {
+            throw new NotImplementedException();
+        }
 
-        Cursos ObtenerPorId(int CursoId);
+        public void Agregar(Cursos curso)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Cursos ObtenerPorId(int CursoId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remover(Cursos curso)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Cursos> TraerTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

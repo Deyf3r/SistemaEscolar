@@ -19,11 +19,11 @@ namespace Sistema_Escolar.Data.Context
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase("SistemaEscolar");
-            base.OnConfiguring(optionsBuilder);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseInMemoryDatabase("SistemaEscolar");
+        //    base.OnConfiguring(optionsBuilder);
+        //}
         public DbSet<Cursos> Curso { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_Escolar.Data.Interfaces
 {
-    public interface CursoRepository
+    public interface ICursoRepository
     {
         void Agregar(Cursos curso);
         void Actualizar(Cursos curso);
