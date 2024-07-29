@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_Escolar.Data.Repositories.DB
 {
-    public class AgregarEstudiantes : IAgregarEstudiantesRepository
+    public class AgregarEstudiantesRepository : IAgregarEstudiantesRepository
     {
         public void Actualizar(Estudiantes estudiantes)
         {
