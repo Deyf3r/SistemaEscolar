@@ -33,7 +33,7 @@ namespace SistemaEscolar.Data.Repositories.Mocks
             Materias materiasToupdate = this.context.Materias.Find(materias.MateriasId);
 
             if (materiasToupdate is null)
-                throw new MateriasNullExceptions("It dosen't have to be null");
+                throw new MateriaNotExitsExeption("It dosen't have to be null");
 
             materiasToupdate.MateriasId = materias.MateriasId;
             materiasToupdate.MateriasName = materias.MateriasName;
@@ -51,6 +51,8 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
             if (ExisteMateria(materias.MateriasId))
                 throw new MateriaDuplicadoExeption($"this materia {materias.MateriasId}");
+
+        
 
             Materias materiastoadd = new Materias()
             {
@@ -93,38 +95,43 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
         private void CargarDatos()
         {
-
-            List<Materias> materias1 = new List<Materias>()
+            if (!this.context.Materias.Any())
+            {
+                List<Materias> materias1 = new List<Materias>()
             {
                 new Materias ()
                 {
                 MateriasId = 1,
-                MateriasName = "",
+                MateriasName = "Naturalez",
                 Descripcion = ""
                 },
                 new Materias ()
                 {
                 MateriasId = 2,
-                MateriasName = "",
+                MateriasName = "Matematicas",
                 Descripcion = ""
                 },
                 new Materias ()
                 {
                 MateriasId = 3,
-                MateriasName = "",
+                MateriasName = "Fisica",
                 Descripcion = ""
                 },
                 new Materias ()
                 {
                 MateriasId = 4,
-                MateriasName = "",
+                MateriasName = "Programacion",
                 Descripcion = ""
                 },
 
              };
 
-            this.context.Materias.AddRange(materias1);
-            this.context.SaveChanges();
+
+                this.context.Materias.AddRange(materias1);
+                this.context.SaveChanges();
+
+            }
+
 
 
         }
@@ -143,6 +150,12 @@ namespace SistemaEscolar.Data.Repositories.Mocks
         private bool ExisteMateria(int materiasId)
         {
             return this.context.Materias.Any(cd => cd.MateriasId == materiasId);
+        }
+
+        private void LimpiarDatos(List<Materias> materias) 
+        {
+            this.context.Materias.RemoveRange(materias);
+            this.context.SaveChanges();
         }
     }
 }
