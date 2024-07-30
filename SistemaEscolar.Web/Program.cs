@@ -23,6 +23,7 @@ builder.Services.AddDbContext<ProfesoresContext>(options => options.UseInMemoryD
 builder.Services.AddScoped<IProfesoresRepository, MockProfesoresRepository>();
 
 
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
