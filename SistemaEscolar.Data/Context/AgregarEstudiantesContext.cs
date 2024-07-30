@@ -15,11 +15,13 @@ namespace Sistema_Escolar.Data.Context
         {
 
         }
-
-
+        public AgregarEstudiantesContext()
+        {
+            
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase("Estudiantes");
+             optionsBuilder.UseInMemoryDatabase("SistemaEscolar");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Estudiantes> Estudiantes { get; set; }
