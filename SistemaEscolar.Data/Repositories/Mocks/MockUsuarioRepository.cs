@@ -5,19 +5,19 @@ using SistemaEscolar.Data.Repositories.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaEscolar.Data.Repositories.Mocks
 {
     public class MockUsuarioRepository : IUsuarioRepository
     {
         private readonly UsuariosContext context;
+
         public MockUsuarioRepository(UsuariosContext context)
         {
             this.context = context;
             this.CargarDatos();
         }
+
         public void Actualizar(Usuarios usuarios)
         {
             if (UsuarioIsNull(usuarios))
@@ -77,6 +77,14 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
             if (UsuarioToRemove is null)
                 throw new UsurioToRemoveExecption("El usuario a remover no puede ser nulo");
+
+            this.context.Usuarios.Remove(UsuarioToRemove);
+            this.context.SaveChanges();
+        }
+
+        public List<Usuarios> TraerTodos()
+        {
+            return this.context.Usuarios.ToList();
         }
 
         private bool ExisteUsuario(int UsuarioId)
@@ -84,24 +92,22 @@ namespace SistemaEscolar.Data.Repositories.Mocks
             return this.context.Usuarios.Any(cd => cd.IdUsuario == UsuarioId);
         }
 
-        public List<Usuarios> TraerTodos()
-        {
-            throw new NotImplementedException();
-        }
-
         private void CargarDatos()
         {
-            Usuarios usuarios = new Usuarios()
+            if (!this.context.Usuarios.Any(u => u.IdUsuario == 1))
             {
-                IdUsuario = 1,
-                Name = "Pedro",
-                Password = "Contraseña",
-                Email = "Email",
-                Phone = 8081231234
-            };
+                Usuarios usuario = new Usuarios()
+                {
+                    IdUsuario = 1,
+                    Name = "Pedro",
+                    Password = "Contraseña",
+                    Email = "Email",
+                    Phone = 8081231234
+                };
 
-            this.context.Usuarios.AddRange(usuarios);
-            this.context.SaveChanges();
+                this.context.Usuarios.Add(usuario);
+                this.context.SaveChanges();
+            }
         }
 
         private bool UsuarioIsNull(Usuarios usuarios)
