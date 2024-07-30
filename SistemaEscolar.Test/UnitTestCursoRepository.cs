@@ -32,7 +32,7 @@ namespace SistemaEscolar.Test
                 Assert.Equal("Historia", cursoInDb.Nombre);
             }
         }
-
+        //pruba
         [Fact]
         public void Actualizar_CursoExistente_CursoActualizado()
         {
