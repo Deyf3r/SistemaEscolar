@@ -1,7 +1,10 @@
-﻿using Sistema_Escolar.Data.Context;
-using Sistema_Escolar.Data.Entities;
-using Sistema_Escolar.Data.Exceptions;
-using Sistema_Escolar.Data.Interfaces;
+using SistemaEscolar.Data.Context;
+using SistemaEscolar.Data.Entities;
+using SistemaEscolar.Data.Exceptions;
+using SistemaEscolar.Data.Interfaces;
+
+using SistemaEscolar.Data.Repositories.Db;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +24,18 @@ namespace SistemaEscolar.Data.Repositories.Mocks
         }
         public void Actualizar(Cursos curso)
         {
+
+            if (curso == null)
+                throw new ArgumentNullException(nameof(curso), "El curso no debe ser nulo");
+
+            // Buscar el curso por su clave primaria
+            Cursos cursoToUpdate = context.Curso.Find(curso.CursoId);
+
+            if (cursoToUpdate == null)
+                throw new CursoNotExistsException($"El curso con ID {curso.CursoId} no existe");
+
+            // Actualizar las propiedades del curso encontrado
+
             if (EsCursoNull(curso))
                 throw new CursoNullException("El Objeto asiento no debe de ser null");
 
@@ -30,14 +45,21 @@ namespace SistemaEscolar.Data.Repositories.Mocks
                 throw new CursoNotExistsException("El Objeto asiento no debe de ser null");
 
             cursoToUpdate.CursoId = curso.CursoId;
+
             cursoToUpdate.Nombre = curso.Nombre;
             cursoToUpdate.CodigoCurso = curso.CodigoCurso;
             cursoToUpdate.Descripcion = curso.Descripcion;
             cursoToUpdate.ProfesorAsig = curso.ProfesorAsig;
 
+
+            // Guardar los cambios en la base de datos
+
             context.Curso.Update(cursoToUpdate);
             context.SaveChanges();
         }
+
+
+
 
         public void Agregar(Cursos curso)
         {
@@ -94,6 +116,47 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
         private void CargarDatos()
         {
+
+            if (!context.Curso.Any())
+            {
+                List<Cursos> cursos = new List<Cursos>()
+        {
+            new Cursos()
+            {
+                Nombre = "Ciencias Sociales",
+                CodigoCurso = "001A",
+                Descripcion = "Curso sobre la historia del país",
+                ProfesorAsig = 1
+            },
+            new Cursos()
+            {
+                Nombre = "Ciencias Naturales",
+                CodigoCurso = "001B",
+                Descripcion = "Curso sobre biología, química y física",
+                ProfesorAsig = 2
+            },
+            new Cursos()
+            {
+                Nombre = "Matemáticas",
+                CodigoCurso = "001C",
+                Descripcion = "Curso sobre lógica, razonamiento y números",
+                ProfesorAsig = 3
+            },
+            new Cursos()
+            {
+                Nombre = "Ortografía",
+                CodigoCurso = "001D",
+                Descripcion = "Curso sobre el arte de las palabras y su uso",
+                ProfesorAsig = 4
+            }
+        };
+
+                context.Curso.AddRange(cursos);
+                context.SaveChanges();
+            }
+        }
+
+
             Cursos curso = new Cursos()
             {
                 CursoId = 1,
@@ -149,6 +212,7 @@ namespace SistemaEscolar.Data.Repositories.Mocks
 
 
         }
+
 
         private bool EsCursoNull(Cursos curso)
         {
