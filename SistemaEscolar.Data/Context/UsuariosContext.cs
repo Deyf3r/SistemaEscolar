@@ -12,11 +12,11 @@ namespace SistemaEscolar.Data.Context
     {
         public UsuariosContext(DbContextOptions<UsuariosContext> options) : base(options) { }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseInMemoryDatabase("EscuelaDB");
-        //    base.OnConfiguring(optionsBuilder);
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("EscuelaDB");
+            base.OnConfiguring(optionsBuilder);
+        }
         public DbSet<Usuarios> Usuarios { get; set; }
 
     }
