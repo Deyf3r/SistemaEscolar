@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using SistemaEscolar.Data.Context;
+using SistemaEscolar.Data.Repositories.Db;
+using SistemaEscolar.Data.Repositories.Mocks;
 using Sistema_Escolar.Data.Context;
 using Sistema_Escolar.Data.Interfaces;
 using Sistema_Escolar.Data.Repositories.Mocks;
@@ -12,6 +15,11 @@ using SistemaEscolar.Data.Repositories.Mocks;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddDbContext<UsuariosContext>(options => options.UseInMemoryDatabase("EscuelaDB"));
+
+builder.Services.AddScoped<IUsuarioRepository, MockUsuarioRepository>();
 
 // Add services to the container.
 
